@@ -22,7 +22,7 @@ jobs:
           protocol: ftps
           port: 21
           local-dir: ./
-          server-dir: /public_html/
+          server-dir: /rcx-service.com/public_html/
           exclude: |
             **/.git*
             **/.git*/**
