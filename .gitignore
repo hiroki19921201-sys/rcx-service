@@ -1,0 +1,25 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Node (if used for build tools)
+node_modules/
+
+# Environment / secrets
+.env
+.env.local
+.env.production
+
+# Logs
+*.log
+
+# Backup files
+*.bak
+*.backup
