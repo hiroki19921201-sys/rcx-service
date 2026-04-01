@@ -1,7 +1,10 @@
 name: Fetch Missing Images
 
 on:
-  workflow_dispatch:
+  push:
+    branches: [develop]
+    paths:
+      - '.github/workflows/fetch-missing-images.yml'
 
 jobs:
   fetch-images:
@@ -26,5 +29,4 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add images/syouhin_1.png images/shutterstock_2454686623.png images/certification-sp.jpg
-          git commit -m "Add missing images from production site"
-          git push origin develop
+          git diff --cached --quiet && echo "No changes to commit" || (git commit -m "Add missing images from production site" && git push origin develop)
