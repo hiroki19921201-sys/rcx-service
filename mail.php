@@ -8,6 +8,10 @@ $to_email   = 'info@rcx-service.com';
 $subject    = '【RCX SALES】お問い合わせがありました';
 $thank_you  = 'https://rcx-service.com/thanks.html';
 
+// --- エンコーディング設定 ---
+mb_language('uni');
+mb_internal_encoding('UTF-8');
+
 // --- POST以外はトップにリダイレクト ---
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: https://rcx-service.com/');
@@ -45,56 +49,54 @@ if (!empty($errors)) {
     exit;
 }
 
-// --- メール本文作成 ---
-$body = "";
-$body .= "RCX SALES ウェブサイトから、お問い合わせがありました。\n\n";
-$body .= "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
-$body .= "■ 会社名\n" . $company . "\n\n";
-$body .= "■ お名前\n" . $name . "\n\n";
-$body .= "■ メールアドレス\n" . $email . "\n\n";
-$body .= "■ 電話番号\n" . $phone . "\n\n";
-$body .= "■ お問い合わせ内容\n" . $message . "\n";
-$body .= "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n";
-$body .= "送信日時: " . date('Y年m月d日 H:i') . "\n";
-$body .= "送信元IP: " . $_SERVER['REMOTE_ADDR'] . "\n";
+// --- 管理者宛メール本文 ---
+$date_str = date('Y/m/d H:i');
+$body  = "RCX SALES ウェブサイトから、お問い合わせがありました。" . "\r\n\r\n";
+$body .= "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" . "\r\n";
+$body .= "■ 会社名: " . $company . "\r\n";
+$body .= "■ お名前: " . $name . "\r\n";
+$body .= "■ メールアドレス: " . $email . "\r\n";
+$body .= "■ 電話番号: " . $phone . "\r\n";
+$body .= "■ お問い合わせ内容:" . "\r\n" . $message . "\r\n";
+$body .= "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" . "\r\n\r\n";
+$body .= "送信日時: " . $date_str . "\r\n";
+$body .= "送信元IP: " . $_SERVER['REMOTE_ADDR'] . "\r\n";
 
-// --- メールヘッダー ---
-mb_language('ja');
-mb_internal_encoding('UTF-8');
+// --- 管理者宛メールヘッダー ---
+$headers  = "From: RCX SALES <info@rcx-service.com>" . "\r\n";
+$headers .= "Reply-To: " . $name . " <" . $email . ">" . "\r\n";
 
-$headers  = "From: RCX SALES <info@rcx-service.com>\r\n";
-$headers .= "Reply-To: " . $name . " <" . $email . ">\r\n";
-$headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
-
-// --- メール送信 ---
+// --- 管理者宛メール送信 ---
 $result = mb_send_mail($to_email, $subject, $body, $headers);
 
 // --- 自動返信メール（お客様宛） ---
 if ($result) {
     $auto_subject = '【RCX SALES】お問い合わせありがとうございます';
-    $auto_body = "";
-    $auto_body .= $name . " 様\n\n";
-    $auto_body .= "この度はRCX SALESにお問い合わせいただき、\n";
-    $auto_body .= "誠にありがとうございます。\n\n";
-    $auto_body .= "以下の内容で受け付けました。\n";
-    $auto_body .= "担当者より折り返しご連絡いたしますので、\n";
-    $auto_body .= "しばらくお待ちください。\n\n";
-    $auto_body .= "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
-    $auto_body .= "■ 会社名: " . $company . "\n";
-    $auto_body .= "■ お名前: " . $name . "\n";
-    $auto_body .= "■ メールアドレス: " . $email . "\n";
-    $auto_body .= "■ 電話番号: " . $phone . "\n\n";
-    $auto_body .= "■ お問い合わせ内容:\n" . $message . "\n";
-    $auto_body .= "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n";
-    $auto_body .= "※ このメールは自動送信です。\n";
-    $auto_body .= "  このメールに直接ご返信いただいても対応できません。\n\n";
-    $auto_body .= "──────────────────────────\n";
-    $auto_body .= "RCX SALES（RCXセールス株式会社）\n";
-    $auto_body .= "URL: https://rcx-service.com/\n";
-    $auto_body .= "──────────────────────────\n";
 
-    $auto_headers = "From: RCX SALES <info@rcx-service.com>\r\n";
-    $auto_headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+    $auto_body  = $name . " 様" . "\r\n\r\n";
+    $auto_body .= "この度はRCX SALESへお問い合わせいただき、" . "\r\n";
+    $auto_body .= "誠にありがとうございます。" . "\r\n\r\n";
+    $auto_body .= "お問い合わせ内容を確認のうえ、" . "\r\n";
+    $auto_body .= "担当者より折り返しご連絡させていただきます。" . "\r\n";
+    $auto_body .= "恐れ入りますが、しばらくお待ちくださいませ。" . "\r\n\r\n";
+    $auto_body .= "─────────────────────────" . "\r\n";
+    $auto_body .= "▼ お問い合わせ内容" . "\r\n";
+    $auto_body .= "─────────────────────────" . "\r\n";
+    $auto_body .= "会社名: " . $company . "\r\n";
+    $auto_body .= "お名前: " . $name . "\r\n";
+    $auto_body .= "メールアドレス: " . $email . "\r\n";
+    $auto_body .= "電話番号: " . $phone . "\r\n";
+    $auto_body .= "お問い合わせ内容:" . "\r\n" . $message . "\r\n";
+    $auto_body .= "─────────────────────────" . "\r\n\r\n";
+    $auto_body .= "※ このメールは自動送信されています。" . "\r\n";
+    $auto_body .= "  このメールへの直接のご返信にはお答えできかねますので、" . "\r\n";
+    $auto_body .= "  ご了承ください。" . "\r\n\r\n";
+    $auto_body .= "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" . "\r\n";
+    $auto_body .= "RCX SALES（RCXセールス株式会社）" . "\r\n";
+    $auto_body .= "https://rcx-service.com/" . "\r\n";
+    $auto_body .= "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" . "\r\n";
+
+    $auto_headers = "From: RCX SALES <info@rcx-service.com>" . "\r\n";
 
     mb_send_mail($email, $auto_subject, $auto_body, $auto_headers);
 }
