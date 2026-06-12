@@ -345,15 +345,6 @@
 
     <form action="mail.php" method="POST" class="contact-form">
       <input type="text" name="_honey" style="display:none">
-
-      <div style="margin-bottom:16px;">
-        <label style="display:block;font-size:13px;font-weight:600;color:#333;margin-bottom:6px;">会社名</label>
-        <input type="text" name="company" placeholder="株式会社〇〇" style="width:100%;padding:12px 14px;border:1px solid #ddd;border-radius:8px;font-size:15px;box-sizing:border-box;">
-      </div>
-      <div style="margin-bottom:16px;">
-        <label style="display:block;font-size:13px;font-weight:600;color:#333;margin-bottom:6px;">お名前 <span style="color:#e74c3c;">*</span></label>
-        <input type="text" name="name" required placeholder="山田 太郎" style="width:100%;padding:12px 14px;border:1px solid #ddd;border-radius:8px;font-size:15px;box-sizing:border-box;">
-      </div>
       <div class="form-row">
         <div class="form-group">
           <label for="company">会社名</label>
@@ -442,6 +433,15 @@
     <p style="font-size:14px;color:#666;margin-bottom:24px;line-height:1.6;">以下をご入力いただくと、製品資料（PDF）をダウンロードできます。</p>
     <form id="downloadForm" action="download.php" method="POST">
       <input type="text" name="_honey" style="display:none">
+
+      <div style="margin-bottom:16px;">
+        <label style="display:block;font-size:13px;font-weight:600;color:#333;margin-bottom:6px;">会社名</label>
+        <input type="text" name="company" placeholder="株式会社〇〇" style="width:100%;padding:12px 14px;border:1px solid #ddd;border-radius:8px;font-size:15px;box-sizing:border-box;">
+      </div>
+      <div style="margin-bottom:16px;">
+        <label style="display:block;font-size:13px;font-weight:600;color:#333;margin-bottom:6px;">お名前 <span style="color:#e74c3c;">*</span></label>
+        <input type="text" name="name" required placeholder="山田 太郎" style="width:100%;padding:12px 14px;border:1px solid #ddd;border-radius:8px;font-size:15px;box-sizing:border-box;">
+      </div>
       <div style="margin-bottom:16px;">
         <label style="display:block;font-size:13px;font-weight:600;color:#333;margin-bottom:6px;">メールアドレス <span style="color:#e74c3c;">*</span></label>
         <input type="email" name="email" required placeholder="example@company.com" style="width:100%;padding:12px 14px;border:1px solid #ddd;border-radius:8px;font-size:15px;box-sizing:border-box;">
