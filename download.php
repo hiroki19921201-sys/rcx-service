@@ -48,8 +48,10 @@ $body .= "送信元IP: " . $_SERVER['REMOTE_ADDR'] . "\r\n";
 
 $headers  = "From: RCX SALES <info@rcx-service.com>\r\n";
 $headers .= "Reply-To: " . $email . "\r\n";
+    $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 
-mb_send_mail($to_email, $subject, $body, $headers);
+    $mail_result = mb_send_mail($to_email, $subject, $body, $headers);
+    if (!$mail_result) { error_log("download.php: mail send failed"); }
 
 // --- PDFファイルをダウンロードさせる ---
 if (file_exists($pdf_file)) {
