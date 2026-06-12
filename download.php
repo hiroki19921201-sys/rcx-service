@@ -28,6 +28,8 @@ if (!empty($_POST['_honey'])) {
 // --- 入力値取得 ---
 $email = isset($_POST['email']) ? trim(strip_tags($_POST['email'])) : '';
 $phone = isset($_POST['phone']) ? trim(strip_tags($_POST['phone'])) : '';
+    $company = isset($_POST['company']) ? trim(strip_tags($_POST['company'])) : '';
+    $name    = isset($_POST['name'])    ? trim(strip_tags($_POST['name']))    : '';
 
 // --- バリデーション ---
 if ($email === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -36,10 +38,18 @@ if ($email === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
     exit;
 }
 
+
+    if ($name === '') {
+        http_response_code(400);
+        echo json_encode(['success' => false, 'message' => 'お名前を入力してください']);
+        exit;
+    }
 // --- 通知メール送信 ---
 $date_str = date('Y/m/d H:i');
 $body  = "製品資料のダウンロードがありました。\r\n\r\n";
 $body .= "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\r\n";
+    $body .= "■ 会社名: " . $company . "\r\n";
+    $body .= "■ お名前: " . $name . "\r\n";
 $body .= "■ メールアドレス: " . $email . "\r\n";
 $body .= "■ 電話番号: " . $phone . "\r\n";
 $body .= "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\r\n\r\n";
