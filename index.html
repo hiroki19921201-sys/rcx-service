@@ -246,7 +246,7 @@
               </p>
               <div class="product-btns">
                 <a href="#contact" class="btn-product-main">ご購入はこちら <span>→</span></a>
-                <a href="#" class="btn-product-sub">製品資料をダウンロード <span>↓</span></a>
+                <a href="#" class="btn-product-sub" onclick="openDownloadModal(event)">製品資料をダウンロード <span>↓</span></a>
               </div>
             </div>
           </div>
@@ -266,7 +266,7 @@
               </p>
               <div class="product-btns">
                 <a href="#contact" class="btn-product-main">ご購入はこちら <span>→</span></a>
-                <a href="#" class="btn-product-sub">製品資料をダウンロード <span>↓</span></a>
+                <a href="#" class="btn-product-sub" onclick="openDownloadModal(event)">製品資料をダウンロード <span>↓</span></a>
               </div>
             </div>
           </div>
@@ -286,7 +286,7 @@
               </p>
               <div class="product-btns">
                 <a href="#contact" class="btn-product-main">ご購入はこちら <span>→</span></a>
-                <a href="#" class="btn-product-sub">製品資料をダウンロード <span>↓</span></a>
+                <a href="#" class="btn-product-sub" onclick="openDownloadModal(event)">製品資料をダウンロード <span>↓</span></a>
               </div>
             </div>
           </div>
@@ -306,7 +306,7 @@
                     </p>
                     <div class="product-btns">
                       <a href="#contact" class="btn-product-main">ご購入はこちら <span>→</span></a>
-                      <a href="#" class="btn-product-sub">製品資料をダウンロード <span>↓</span></a>
+                      <a href="#" class="btn-product-sub" onclick="openDownloadModal(event)">製品資料をダウンロード <span>↓</span></a>
                     </div>
                   </div>
                 </div>
@@ -424,6 +424,43 @@
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="js/main.js"></script>
+
+<!-- Download Modal -->
+<div id="downloadModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:9999;align-items:center;justify-content:center;">
+  <div style="background:#fff;border-radius:12px;padding:40px 32px;max-width:440px;width:90%;position:relative;box-shadow:0 20px 60px rgba(0,0,0,0.3);">
+    <button onclick="closeDownloadModal()" style="position:absolute;top:12px;right:16px;background:none;border:none;font-size:24px;cursor:pointer;color:#999;">&times;</button>
+    <h3 style="font-size:20px;font-weight:700;margin-bottom:8px;color:#333;">製品資料ダウンロード</h3>
+    <p style="font-size:14px;color:#666;margin-bottom:24px;line-height:1.6;">以下をご入力いただくと、製品資料（PDF）をダウンロードできます。</p>
+    <form id="downloadForm" action="download.php" method="POST">
+      <input type="text" name="_honey" style="display:none">
+      <div style="margin-bottom:16px;">
+        <label style="display:block;font-size:13px;font-weight:600;color:#333;margin-bottom:6px;">メールアドレス <span style="color:#e74c3c;">*</span></label>
+        <input type="email" name="email" required placeholder="example@company.com" style="width:100%;padding:12px 14px;border:1px solid #ddd;border-radius:8px;font-size:15px;box-sizing:border-box;">
+      </div>
+      <div style="margin-bottom:24px;">
+        <label style="display:block;font-size:13px;font-weight:600;color:#333;margin-bottom:6px;">電話番号</label>
+        <input type="tel" name="phone" placeholder="03-1234-5678" style="width:100%;padding:12px 14px;border:1px solid #ddd;border-radius:8px;font-size:15px;box-sizing:border-box;">
+      </div>
+      <button type="submit" style="width:100%;padding:14px;background:#f39800;color:#fff;border:none;border-radius:50px;font-size:16px;font-weight:700;cursor:pointer;letter-spacing:1px;">資料をダウンロードする</button>
+    </form>
+  </div>
+</div>
+<script>
+function openDownloadModal(e) {
+  e.preventDefault();
+  var modal = document.getElementById('downloadModal');
+  modal.style.display = 'flex';
+}
+function closeDownloadModal() {
+  var modal = document.getElementById('downloadModal');
+  modal.style.display = 'none';
+  document.getElementById('downloadForm').reset();
+}
+document.getElementById('downloadModal').addEventListener('click', function(e) {
+  if (e.target === this) closeDownloadModal();
+});
+</script>
+
 </body>
 </html>
 <!-- deploy trigger -->
