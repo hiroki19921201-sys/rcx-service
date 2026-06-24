@@ -8,9 +8,26 @@ $to_email   = 'info@rcx-service.com';
 $subject    = '【RCX SALES】お問い合わせがありました';
 $thank_you  = 'https://rcx-service.com/thanks.html';
 
+// --- Google スプレッドシート連携URL ---
+$gas_url = 'https://script.google.com/macros/s/AKfycbzzfuYqOtnokSZxrrpDb2dsl7wuwf0U3rMx0zVyWxlkSHP3AkFW4eBlhyAlZcNeaj4/exec';
+
 // --- エンコーディング設定 ---
 mb_language('uni');
 mb_internal_encoding('UTF-8');
+
+// --- スプレッドシートへデータ送信 ---
+function postToSpreadsheet($url, $data) {
+    if ($url === 'YOUR_GAS_URL_HERE' || $url === '') return;
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+    curl_exec($ch);
+    curl_close($ch);
+}
 
 // --- POST以外はトップにリダイレクト ---
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -68,6 +85,18 @@ $headers .= "Reply-To: " . $name . " <" . $email . ">" . "\r\n";
 
 // --- 管理者宛メール送信 ---
 $result = mb_send_mail($to_email, $subject, $body, $headers);
+
+// --- スプレッドシートに記録 ---
+postToSpreadsheet($gas_url, [
+    'type'    => 'contact',
+    'date'    => $date_str,
+    'company' => $company,
+    'name'    => $name,
+    'email'   => $email,
+    'phone'   => $phone,
+    'message' => $message,
+    'ip'      => $_SERVER['REMOTE_ADDR']
+]);
 
 // --- 自動返信メール（お客様宛） ---
 if ($result) {
