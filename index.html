@@ -462,6 +462,21 @@
   </div>
 </div>
 <script>
+// GA4 conversion tracking
+document.querySelector('.contact-form').addEventListener('submit', function() {
+  gtag('event', 'generate_lead', {
+    form_type: 'contact',
+    form_name: 'お問い合わせ'
+  });
+});
+document.getElementById('downloadForm').addEventListener('submit', function() {
+  gtag('event', 'generate_lead', {
+    form_type: 'download',
+    form_name: '資料ダウンロード'
+  });
+});
+</script>
+<script>
 function openDownloadModal(e) {
   e.preventDefault();
   var modal = document.getElementById('downloadModal');
