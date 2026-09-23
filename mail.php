@@ -47,6 +47,9 @@ $name    = isset($_POST['name'])    ? trim(strip_tags($_POST['name']))    : '';
 $email   = isset($_POST['email'])   ? trim(strip_tags($_POST['email']))   : '';
 $phone   = isset($_POST['phone'])   ? trim(strip_tags($_POST['phone']))   : '';
 $message = isset($_POST['message']) ? trim(strip_tags($_POST['message'])) : '';
+$category = isset($_POST['category']) ? trim(strip_tags($_POST['category'])) : '';
+$allowed_categories = ['サンプル請求', 'お見積もり', 'デモ・製品説明のご依頼', '導入のご相談', 'その他'];
+if (!in_array($category, $allowed_categories, true)) { $category = ''; }
 
 // --- バリデーション ---
 $errors = [];
@@ -67,9 +70,11 @@ if (!empty($errors)) {
 }
 
 // --- 管理者宛メール本文 ---
+if ($category !== '') { $subject .= '（' . $category . '）'; }
 $date_str = date('Y/m/d H:i');
 $body  = "RCX SALES ウェブサイトから、お問い合わせがありました。" . "\r\n\r\n";
 $body .= "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" . "\r\n";
+$body .= "■ お問い合わせ種別: " . $category . "\r\n";
 $body .= "■ 会社名: " . $company . "\r\n";
 $body .= "■ お名前: " . $name . "\r\n";
 $body .= "■ メールアドレス: " . $email . "\r\n";
@@ -94,7 +99,8 @@ postToSpreadsheet($gas_url, [
     'name'    => $name,
     'email'   => $email,
     'phone'   => $phone,
-    'message' => $message,
+    'message' => ($category !== '' ? '【' . $category . '】' . "\n" : '') . $message,
+    'category' => $category,
     'ip'      => $_SERVER['REMOTE_ADDR']
 ]);
 
@@ -111,6 +117,7 @@ if ($result) {
     $auto_body .= "─────────────────────────" . "\r\n";
     $auto_body .= "▼ お問い合わせ内容" . "\r\n";
     $auto_body .= "─────────────────────────" . "\r\n";
+    $auto_body .= "お問い合わせ種別: " . $category . "\r\n";
     $auto_body .= "会社名: " . $company . "\r\n";
     $auto_body .= "お名前: " . $name . "\r\n";
     $auto_body .= "メールアドレス: " . $email . "\r\n";
