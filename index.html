@@ -116,8 +116,8 @@
         <ul>
           <li><a href="#news">NEWS</a></li>
           <li><a href="#philosophy">PHILOSOPHY</a></li>
-          <li><a href="#">SECTION</a></li>
-          <li><a href="#">ABOUT US</a></li>
+          <li><a href="#social-issues">SECTION</a></li>
+          <li><a href="#rcx">ABOUT US</a></li>
           <li><a href="#technology">TECHNOLOGY</a></li>
           <li><a href="#products">PRODUCTS</a></li>
           <li><a href="#company">COMPANY</a></li>
@@ -163,7 +163,6 @@
   <div class="news-container">
     <div class="section-header-row">
       <h2 class="section-title-orange">NEWS</h2>
-      <a href="#" class="link-more">一覧を見る <span class="arrow">→</span></a>
     </div>
     <div class="news-list">
       <article class="news-item">
@@ -271,7 +270,7 @@
                 LiGIS延焼防止剤は、EVやESSなどのバッテリー関連環境での使用が認証された、リチウムイオンバッテリー専用の延焼防止剤です。
               </p>
               <div class="product-btns">
-                <a href="#contact" class="btn-product-main">ご購入はこちら <span>→</span></a>
+                <a href="#contact" class="btn-product-main" onclick="setContactCategory('お見積もり')">お見積もり・ご相談 <span>→</span></a>
                 <a href="#" class="btn-product-sub" onclick="openDownloadModal(event)">製品資料をダウンロード <span>↓</span></a>
               </div>
             </div>
@@ -291,7 +290,7 @@
                 LiGIS延焼防止剤パッドは、初期の熱異常時に発生するオフガスを安定化させ、バッテリーモジュール内部での発火リスクを低減する抑制パッドです。
               </p>
               <div class="product-btns">
-                <a href="#contact" class="btn-product-main">ご購入はこちら <span>→</span></a>
+                <a href="#contact" class="btn-product-main" onclick="setContactCategory('お見積もり')">お見積もり・ご相談 <span>→</span></a>
                 <a href="#" class="btn-product-sub" onclick="openDownloadModal(event)">製品資料をダウンロード <span>↓</span></a>
               </div>
             </div>
@@ -311,7 +310,7 @@
                 作業者が安全に火源へアプローチできる設計。工場や施設など、現場での実用性を重視しています。
               </p>
               <div class="product-btns">
-                <a href="#contact" class="btn-product-main">ご購入はこちら <span>→</span></a>
+                <a href="#contact" class="btn-product-main" onclick="setContactCategory('お見積もり')">お見積もり・ご相談 <span>→</span></a>
                 <a href="#" class="btn-product-sub" onclick="openDownloadModal(event)">製品資料をダウンロード <span>↓</span></a>
               </div>
             </div>
@@ -331,7 +330,7 @@
                       高リスクバッテリーの保管・隔離を想定した次世代製品。※要相談
                     </p>
                     <div class="product-btns">
-                      <a href="#contact" class="btn-product-main">ご購入はこちら <span>→</span></a>
+                      <a href="#contact" class="btn-product-main" onclick="setContactCategory('お見積もり')">お見積もり・ご相談 <span>→</span></a>
                       <a href="#" class="btn-product-sub" onclick="openDownloadModal(event)">製品資料をダウンロード <span>↓</span></a>
                     </div>
                   </div>
@@ -392,6 +391,17 @@
         </div>
       </div>
       <div class="form-group full">
+        <label for="category">お問い合わせ種別 <span class="required">*</span></label>
+        <select id="category" name="category" required style="background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666' stroke-width='1.5' fill='none'/%3E%3C/svg%3E&quot;);background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;">
+          <option value="">選択してください</option>
+          <option value="サンプル請求">サンプル請求</option>
+          <option value="お見積もり">お見積もり</option>
+          <option value="デモ・製品説明のご依頼">デモ・製品説明のご依頼</option>
+          <option value="導入のご相談">導入のご相談</option>
+          <option value="その他">その他</option>
+        </select>
+      </div>
+      <div class="form-group full">
         <label for="message">お問い合わせ内容 <span class="required">*</span></label>
         <textarea id="message" name="message" rows="6" placeholder="お問い合わせ内容をご記入ください" required></textarea>
       </div>
@@ -419,18 +429,18 @@
           <li><a href="#mission">MISSION</a></li>
           <li><a href="#vision">VISION</a></li>
           <li><a href="#philosophy">PHILOSOPHY</a></li>
-          <li><a href="#social-challenges">社会課題セクション</a></li>
+          <li><a href="#social-issues">社会課題セクション</a></li>
           <li><a href="#rcx">RCXとは</a></li>
         </ul>
       </div>
       <div class="footer-nav-col">
         <br><br>
         <ul>
-          <li><a href="#technology-strengths">技術と強み</a></li>
-          <li><a href="#product-intro">製品紹介</a></li>
+          <li><a href="#technology">技術と強み</a></li>
+          <li><a href="#products">製品紹介</a></li>
           <li><a href="#certification">認証・実績</a></li>
           <li><a href="#use-cases">ユースケース／導入例</a></li>
-          <li><a href="#company-info">会社情報</a></li>
+          <li><a href="#company">会社情報</a></li>
         </ul>
       </div>
       <div class="footer-nav-col footer-nav-col--inline">
@@ -456,7 +466,7 @@
   <div style="background:#fff;border-radius:12px;padding:40px 32px;max-width:440px;width:90%;position:relative;box-shadow:0 20px 60px rgba(0,0,0,0.3);">
     <button onclick="closeDownloadModal()" style="position:absolute;top:12px;right:16px;background:none;border:none;font-size:24px;cursor:pointer;color:#999;">&times;</button>
     <h3 style="font-size:20px;font-weight:700;margin-bottom:8px;color:#333;">製品資料ダウンロード</h3>
-    <p style="font-size:14px;color:#666;margin-bottom:24px;line-height:1.6;">以下をご入力いただくと、製品資料（PDF）をダウンロードできます。</p>
+    <p id="downloadLead" style="font-size:14px;color:#666;margin-bottom:24px;line-height:1.6;">以下をご入力いただくと、製品資料（PDF）をダウンロードできます。</p>
     <form id="downloadForm" action="download.php" method="POST">
       <input type="text" name="_honey" style="display:none">
 
@@ -478,6 +488,12 @@
       </div>
       <button type="submit" style="width:100%;padding:14px;background:#f39800;color:#fff;border:none;border-radius:50px;font-size:16px;font-weight:700;cursor:pointer;letter-spacing:1px;">資料をダウンロードする</button>
     </form>
+    <div id="downloadDone" style="display:none;text-align:center;">
+      <p style="font-size:16px;font-weight:700;color:#333;margin-bottom:12px;">ダウンロードを開始しました</p>
+      <p style="font-size:14px;color:#666;line-height:1.8;margin-bottom:24px;">サンプル品のお取り寄せや、設置環境に合わせた製品選定のご相談も承っています。</p>
+      <a href="#contact" onclick="goContactFromDownload(event)" style="display:block;padding:14px;background:#f39800;color:#fff;border-radius:50px;font-size:15px;font-weight:700;text-decoration:none;">サンプル・導入のご相談はこちら</a>
+      <p style="font-size:12px;color:#999;line-height:1.6;margin-top:12px;">ご入力の会社名・お名前・連絡先はお問い合わせフォームに引き継がれます。</p>
+    </div>
   </div>
 </div>
 <script>
@@ -498,7 +514,7 @@ document.getElementById('downloadForm').addEventListener('submit', function(e) {
   e.preventDefault();
   var form = this;
   var submitted = false;
-  function doSubmit() { if (!submitted) { submitted = true; form.submit(); } }
+  function doSubmit() { if (!submitted) { submitted = true; form.submit(); showDownloadDone(); } }
   gtag('event', 'generate_lead', {
     form_type: 'download',
     form_name: '資料ダウンロード',
@@ -513,10 +529,35 @@ function openDownloadModal(e) {
   var modal = document.getElementById('downloadModal');
   modal.style.display = 'flex';
 }
+function showDownloadDone() {
+  document.getElementById('downloadForm').style.display = 'none';
+  document.getElementById('downloadLead').style.display = 'none';
+  document.getElementById('downloadDone').style.display = 'block';
+}
+function setContactCategory(value) {
+  var sel = document.getElementById('category');
+  if (sel) sel.value = value;
+}
+function goContactFromDownload(e) {
+  e.preventDefault();
+  var src = document.getElementById('downloadForm');
+  var dst = document.querySelector('.contact-form');
+  ['company', 'name', 'email', 'phone'].forEach(function(key) {
+    var from = src.querySelector('[name="' + key + '"]');
+    var to = dst.querySelector('[name="' + key + '"]');
+    if (from && to && !to.value) to.value = from.value;
+  });
+  setContactCategory('サンプル請求');
+  closeDownloadModal();
+  document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+}
 function closeDownloadModal() {
   var modal = document.getElementById('downloadModal');
   modal.style.display = 'none';
   document.getElementById('downloadForm').reset();
+  document.getElementById('downloadForm').style.display = '';
+  document.getElementById('downloadLead').style.display = '';
+  document.getElementById('downloadDone').style.display = 'none';
 }
 document.getElementById('downloadModal').addEventListener('click', function(e) {
   if (e.target === this) closeDownloadModal();
