@@ -15,8 +15,8 @@
 
   <!-- SEO -->
   <title>株式会社RCX（RCX SALES）｜リチウム電池火災を消す延焼防止剤 LiBOX</title>
-  <meta name="description" content="株式会社RCX（RCX SALES Co., Ltd.）はリチウムイオンバッテリー火災専用の消火・延焼防止製品「LiBOX」を提供。EV・蓄電池・産業機器のバッテリー火災リスクに対応する次世代消火テクノロジーをお届けします。">
-  <meta name="keywords" content="株式会社RCX,RCX SALES,リチウム電池火災,延焼防止剤,LiBOX,バッテリー消火,EV火災,蓄電池火災,リチウムイオンバッテリー">
+  <meta name="description" content="リチウムイオン電池・EV・蓄電池の火災対策に。株式会社RCXはバッテリー火災専用の消火器・延焼防止剤「LiBOX」を提供。リチウム電池火災の消火・抑制に特化した製品で、工場・倉庫・充電施設の安全を守ります。">
+  <meta name="keywords" content="株式会社RCX,RCX SALES,リチウム電池火災,延焼防止剤,LiBOX,バッテリー消火,EV火災,蓄電池火災,リチウムイオン電池 消火器,蓄電池 火災対策,バッテリー火災 消火,EV火災 対策,リチウム電池 消火器,リチウムイオンバッテリー">
   <meta name="author" content="株式会社RCX（RCX SALES Co., Ltd.）">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://rcx-service.com/">
@@ -70,6 +70,25 @@
       "target": "https://rcx-service.com/?s={search_term_string}",
       "query-input": "required name=search_term_string"
     }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "LiGIS延焼防止剤",
+    "description": "EVやESSなどのバッテリー関連環境での使用が認証されたリチウムイオンバッテリー専用の延焼防止剤",
+    "brand": {
+      "@type": "Brand",
+      "name": "RCX SALES"
+    },
+    "manufacturer": {
+      "@type": "Organization",
+      "name": "株式会社RCX"
+    },
+    "category": "バッテリー火災消火製品",
+    "url": "https://rcx-service.com/#products",
+    "image": "https://rcx-service.com/images/syouhin_1.png"
   }
   </script>
 
@@ -462,18 +481,30 @@
   </div>
 </div>
 <script>
-// GA4 conversion tracking
-document.querySelector('.contact-form').addEventListener('submit', function() {
+// GA4 conversion tracking (preventDefault + callback)
+document.querySelector('.contact-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  var form = this;
+  var submitted = false;
+  function doSubmit() { if (!submitted) { submitted = true; form.submit(); } }
   gtag('event', 'generate_lead', {
     form_type: 'contact',
-    form_name: 'お問い合わせ'
+    form_name: 'お問い合わせ',
+    event_callback: doSubmit
   });
+  setTimeout(doSubmit, 1000);
 });
-document.getElementById('downloadForm').addEventListener('submit', function() {
+document.getElementById('downloadForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  var form = this;
+  var submitted = false;
+  function doSubmit() { if (!submitted) { submitted = true; form.submit(); } }
   gtag('event', 'generate_lead', {
     form_type: 'download',
-    form_name: '資料ダウンロード'
+    form_name: '資料ダウンロード',
+    event_callback: doSubmit
   });
+  setTimeout(doSubmit, 1000);
 });
 </script>
 <script>
