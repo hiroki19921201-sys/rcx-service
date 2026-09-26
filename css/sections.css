@@ -786,3 +786,27 @@
   .tx-company-table th { width: 110px; padding-right: 10px; letter-spacing: .06em; }
   .tx-company-table td { letter-spacing: .04em; overflow-wrap: anywhere; }
 }
+
+
+/* social-issues: パネルを右端まで広げる（カンプに合わせた調整） */
+.tx-social {
+  padding: 120px 0 140px 60px;
+  background-position: left center;
+}
+.tx-social-panel {
+  max-width: 1160px;
+  margin: 0 0 0 auto;
+  padding: 80px max(60px, calc((100vw - 1200px) / 2 + 40px)) 90px 70px;
+  border-radius: 40px 0 0 40px;
+}
+
+/* PCだけで効かせる改行 */
+@media (max-width: 1024px) {
+  .tx-social { padding: 80px 0 100px 24px; }
+  .tx-social-panel { padding: 60px 40px 70px 40px; }
+}
+@media (max-width: 768px) {
+  .tx-social { padding: 62vw 0 60px; }
+  .tx-social-panel { margin: 0 12px; padding: 40px 20px 44px; border-radius: 24px; }
+  .tx-br-pc { display: none; }
+}
